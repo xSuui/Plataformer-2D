@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     public Ease ease = Ease.OutBack;
 
 
+    [Header("Animation Player")]
+    public string boolRun = "Run";
+    public Animator animator;
+    public float playerSwipeDuration = .1f;
+
     private void Start()
     {
         DOTween.SetTweensCapacity(200, 125);
@@ -41,24 +46,47 @@ public class Player : MonoBehaviour
     private void HandleMoviment()
     {
         if (Input.GetKey(KeyCode.LeftShift))
+        {
             _currentSpeed = speedRun;
+            animator.speed = 2f;
+        }
         else
-            _currentSpeed = speed;
+        {
+            _currentSpeed = speedRun;
+            animator.speed = 1f;
+        }
 
 
 
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
+            if(myRigidbody.transform.localScale.x != -1)
+            {
+                myRigidbody.transform.DOScaleX(-1, playerSwipeDuration);
+            }
+            animator.SetBool(boolRun, true);
+            
+            //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
+            if (myRigidbody.transform.localScale.x != 1)
+            {
+                myRigidbody.transform.DOScaleX(1, playerSwipeDuration);
+            }
+            animator.SetBool(boolRun, true);
+
+            //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool(boolRun, false);
         }
 
+        
         if(myRigidbody.velocity.x > 0)
         {
             myRigidbody.velocity += friction;
