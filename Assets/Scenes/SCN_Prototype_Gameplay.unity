@@ -767,6 +767,7 @@ MonoBehaviour:
   boolRun: Run
   animator: {fileID: 1486415870}
   playerSwipeDuration: 0.1
+  direction: 1
 --- !u!114 &1213795581
 MonoBehaviour:
   m_ObjectHideFlags: 0

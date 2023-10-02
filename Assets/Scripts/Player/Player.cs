@@ -25,9 +25,11 @@ public class Player : MonoBehaviour
     public Animator animator;
     public float playerSwipeDuration = .1f;
 
+    public int direction = 1;
+
     private void Start()
     {
-        DOTween.SetTweensCapacity(200, 125);
+        //DOTween.SetTweensCapacity(200, 125);
     }
 
     //public float landingScaleY = 1.5f;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
     {
         HandleJump();
         HandleMoviment();
+        
     }
 
     private void HandleMoviment()
@@ -67,7 +70,9 @@ public class Player : MonoBehaviour
                 myRigidbody.transform.DOScaleX(-1, playerSwipeDuration);
             }
             animator.SetBool(boolRun, true);
-            
+
+            direction = -1;
+
             //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
@@ -78,6 +83,8 @@ public class Player : MonoBehaviour
                 myRigidbody.transform.DOScaleX(1, playerSwipeDuration);
             }
             animator.SetBool(boolRun, true);
+
+            direction = 1;
 
             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
         }
@@ -103,21 +110,27 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             myRigidbody.velocity = Vector2.up * forceJump;
-            myRigidbody.transform.localScale = Vector2.one;
+
+            Vector3 scale = Vector3.one;
+            scale.x = direction > 0 ? 1 : -1;
+            myRigidbody.transform.localScale = scale;
 
             DOTween.Kill(myRigidbody.transform);
 
             HandleScaleJump();
 
-            //handleScaleLanding();
+            
+            //myRigidbody.transform.localScale = Vector2.one;
         }    
     }
 
 
     private void HandleScaleJump()
     {
+        myRigidbody.transform.DOKill();
         myRigidbody.transform.DOScaleY(jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-        myRigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+        float finalXScale = direction > 0 ? jumpScaleX : -jumpScaleX;
+        myRigidbody.transform.DOScaleX(finalXScale, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 
     /*private void handleScaleLanding()
