@@ -2948,6 +2948,9 @@ MonoBehaviour:
   jumpScaleY: 1.1
   jumpScaleX: 1
   animationDuration: 0.3
+  soJumpScaleY: {fileID: 11400000, guid: 1cf345848d4ef914fbe4e3dabb3bbe2b, type: 2}
+  soJumpScaleX: {fileID: 11400000, guid: b136f0402bf56c84bb2a0d9e7390404e, type: 2}
+  soAnimationDuration: {fileID: 11400000, guid: 26829a7bba435214aa1e7b60f6c8e0eb, type: 2}
   ease: 27
   boolRun: Run
   triggerDeath: Death
