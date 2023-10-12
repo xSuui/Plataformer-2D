@@ -52,6 +52,7 @@ MonoBehaviour:
   timeToHide: 3
   graphicItem: {fileID: 8730034001874588874}
   audioSource: {fileID: 1274929316588437590}
+  collider: {fileID: 136076483502609886}
 --- !u!58 &136076483502609886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4236062328982498758, guid: ed387a43bf9dd63469b49437876902a1, type: 2}
   m_audioClip: {fileID: 8300000, guid: d0841eebed9944dd3b27de3ee7e6eb88, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
