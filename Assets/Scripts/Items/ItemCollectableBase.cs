@@ -5,7 +5,8 @@ using UnityEngine;
 public class ItemCollectableBase : MonoBehaviour
 {
     public string compareTag = "Player";
-    public ParticleSystem particleSystem;
+    //public ParticleSystem particleSystem;
+    public new ParticleSystem particleSystem;
     public float timeToHide = 3;
     public GameObject graphicItem;
 

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ItemCollectableCoin : ItemCollectableBase
 {
-    public Collider2D collider;
+    //public Collider2D collider;
+    public new Collider2D collider;
 
     protected override void OnCollect()
     {

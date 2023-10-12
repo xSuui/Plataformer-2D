@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     public int direction = 1;
 
     [Header("Jump Collision Check")]
-    public Collider2D collider2D;
+    //public Collider2D collider2D;
+    public new Collider2D collider2D;
     public float distToGround;
     public float spaceToGround = .1f;
     public ParticleSystem jumpVFX;
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //DOTween.SetTweensCapacity(200, 125);
+        DOTween.SetTweensCapacity(200, 125);
     }
 
     //public float landingScaleY = 1.5f;
